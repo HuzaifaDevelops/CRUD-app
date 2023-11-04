@@ -16,6 +16,8 @@ const CustomModal = ({ modalOpen, setmodalOpen, editProductData, finalProductdat
     
     // console.log();
     setFinalProductdata([...sameVal, values])
+    let editedData = [...sameVal, values];
+    localStorage.setItem('productData', JSON.stringify(editedData))
     setmodalOpen(false)
   }
 

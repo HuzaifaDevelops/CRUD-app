@@ -7,11 +7,13 @@ const deleteModal = ({ modalOpen, setModalOpen, initialProductData, finalProduct
 
 
     const deleteProductFunc = () => {
-        let newArr = [initialProductData]
-        const uniqueValues = finalProductData.filter((value) => !newArr.includes(value));
+        let initialData = [initialProductData]
+        const uniqueValues = finalProductData.filter((value) => !initialData.includes(value));
         console.log(uniqueValues);
-        setFinalProductdata(uniqueValues)
-        // console.log(newArr);
+        setFinalProductdata(uniqueValues);
+        // console.log(finalProductData);
+        // localStorage.removeItem('productData');
+        localStorage.setItem('productData', JSON.stringify(uniqueValues))
         setModalOpen(false)
     }
 

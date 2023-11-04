@@ -2,6 +2,7 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import ImageUploader from './ImageUploader';
 
 const LoginForm = (props) => {
 
@@ -123,6 +124,8 @@ const LoginForm = (props) => {
                                             <ErrorMessage name="human" component="div" className="text-red-800" />
                                         </div>
                                     </div>
+
+                                    <ImageUploader/>
 
                                     {/* Button */}
                                     <div className="p-2 w-full">

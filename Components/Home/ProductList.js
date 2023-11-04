@@ -7,14 +7,25 @@ import { MdDeleteOutline, MdOutlineEditNote } from "react-icons/md";
 
 
 const Page = () => {
-  const [productData, setProductData] = useState([]);
+  const [productData, setProductData] = useState([]); // ==> state in which I'm saving data and running map func
   const [EditmodalOpen, setEditmodalOpen] = useState(false);
   const [DeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [editProduct, setEditProduct] = useState();
 
   useEffect(() => {
-    console.log(productData);
+    let a = localStorage.getItem('productData'); // ==> it checks that if product is available or not, if not it returns null
+    if (a === null ) // ==> it checks that if it's null means productData is'nt available in local storage 
+    {
+      const initial = JSON.stringify(productData);
+      console.log(initial);
+      localStorage.setItem('productData', initial)
+    }
   }, [productData]);
+
+  useEffect(() => {
+    const getData = JSON.parse(localStorage.getItem('productData'));
+    setProductData(getData)
+  },[])
 
   const editProductFunc = (product) => {
     setEditProduct(product)
@@ -37,9 +48,12 @@ const Page = () => {
     // Add an 'id' property with the index as the value
     try {
       const updatedProduct = { ...values, id: productData.length };
-      setProductData([...productData, updatedProduct]);
+      const updatedData = [...productData, updatedProduct]; // Update the state
+      setProductData(updatedData); // Update the state with the new data
+
+      // Serialize and store the updated state in localStorage
+      localStorage.setItem('productData', JSON.stringify(updatedData));
       actions.resetForm(initialValuesObj);
-      // console.log(productData);
     } catch (error) {
       console.log(error);
     }
