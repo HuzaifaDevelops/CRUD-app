@@ -2,7 +2,7 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import ImageUploader from './ImageUploader';
+import DragFiles from './DragFiles';
 
 const LoginForm = (props) => {
 
@@ -33,6 +33,7 @@ const LoginForm = (props) => {
                                     country: Yup.string().notOneOf(['Select a country'], 'Please select a country').required('Country is required'),
                                     human: Yup.boolean().oneOf([true], 'You must confirm that you are human') // It must be true
                                         .required('You must confirm that you are human'),
+                                    
                                 })}
                                 onSubmit={(values, action) => {
                                     console.log(values);
@@ -125,7 +126,7 @@ const LoginForm = (props) => {
                                         </div>
                                     </div>
 
-                                    <ImageUploader/>
+                                    <DragFiles/>
 
                                     {/* Button */}
                                     <div className="p-2 w-full">
